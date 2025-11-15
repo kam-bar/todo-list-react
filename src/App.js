@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Section from "./components/Section";
 import Form from "./components/Form";
 import Tasks from "./components/Tasks";
+import Buttons from "./components/Buttons";
 
 function App() {
     const tasks = [
@@ -15,7 +16,11 @@ function App() {
         <Container>
             <Header title="Lista zadań" />
             <Section title="Dodaj nowe zadanie" body={<Form />} />
-            <Section title="Lista zadań" body={<Tasks tasks={tasks} />} />
+            <Section
+                title="Lista zadań"
+                body={<Tasks tasks={tasks} />}
+                extraHeaderContent={<Buttons tasks={tasks} />}
+            />
         </Container>
     );
 }

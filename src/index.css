@@ -10,6 +10,14 @@ html {
 
 body {
     font-family: "Montserrat", sans-serif;
-    background: #eee;
+    background-color: #e8e8e8;
+    margin: 0;
+    padding: 20px;
     word-break: break-word;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
 }

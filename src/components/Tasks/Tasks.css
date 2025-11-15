@@ -25,7 +25,7 @@
     word-break: break-word;
 }
 
-.tasks__content--done {
+.tasks__item--done .tasks__content {
     text-decoration: line-through;
 }
 
@@ -40,7 +40,7 @@
     font-size: 16px;
 }
 
-.tasks__button--done {
+.tasks__button--toggleDone {
     background-color: #28a745;
 }
 

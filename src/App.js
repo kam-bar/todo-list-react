@@ -12,6 +12,11 @@ function App() {
         { id: 2, content: "zjeść obiad", done: true },
     ]);
 
+    const [hideCompleted, setHideCompleted] = useState(false);
+
+    const toggleHideCompleted = () => {
+        setHideCompleted((prev) => !prev);
+    };
     const removeTask = (id) => {
         setTasks((tasks) => tasks.filter((task) => task.id !== id));
     };
@@ -42,6 +47,10 @@ function App() {
         ]);
     };
 
+    const tasksToRender = hideCompleted
+        ? tasks.filter((task) => !task.done)
+        : tasks;
+
     return (
         <Container>
             <Header title="Lista zadań" />
@@ -55,13 +64,18 @@ function App() {
                 title="Lista zadań"
                 body={
                     <Tasks
-                        tasks={tasks}
+                        tasks={tasksToRender}
                         removeTask={removeTask}
                         toggleTaskDone={toggleTaskDone}
                     />
                 }
                 extraHeaderContent={
-                    <Buttons tasks={tasks} setAllDone={setAllDone} />
+                    <Buttons
+                        tasks={tasks}
+                        setAllDone={setAllDone}
+                        hideCompleted={hideCompleted}
+                        toggleHideCompleted={toggleHideCompleted}
+                    />
                 }
             />
         </Container>

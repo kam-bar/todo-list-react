@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Container from "./components/Container";
 import Header from "./components/Header";
 import Section from "./components/Section";
@@ -11,6 +11,20 @@ const defaultTasks = [
     { id: 2, content: "zjeść obiad", done: true },
 ];
 
+const getInitialTasks = () => {
+    const savedTasks = localStorage.getItem("tasks");
+
+    if (savedTasks) {
+        try {
+            return JSON.parse(savedTasks);
+        } catch (error) {
+            console.error("Błąd parsowania tasks z localStorage:", error);
+            return defaultTasks;
+        }
+    }
+
+    return defaultTasks;
+};
 function App() {
     const [tasks, setTasks] = useState(defaultTasks);
 

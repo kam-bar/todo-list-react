@@ -6,11 +6,13 @@ import Form from "./components/Form";
 import Tasks from "./components/Tasks";
 import Buttons from "./components/Buttons";
 
+const defaultTasks = [
+    { id: 1, content: "przejść na Reacta", done: false },
+    { id: 2, content: "zjeść obiad", done: true },
+];
+
 function App() {
-    const [tasks, setTasks] = useState([
-        { id: 1, content: "przejść na Reacta", done: false },
-        { id: 2, content: "zjeść obiad", done: true },
-    ]);
+    const [tasks, setTasks] = useState(defaultTasks);
 
     const [hideCompleted, setHideCompleted] = useState(false);
 

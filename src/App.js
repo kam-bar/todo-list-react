@@ -6,10 +6,6 @@ import Form from "./components/Form";
 import Tasks from "./components/Tasks";
 import Buttons from "./components/Buttons";
 
-const defaultTasks = [
-    { id: 1, content: "przejść na Reacta", done: false },
-    { id: 2, content: "zjeść obiad", done: true },
-];
 
 const getInitialTasks = () => {
     const savedTasks = localStorage.getItem("tasks");
@@ -19,14 +15,18 @@ const getInitialTasks = () => {
             return JSON.parse(savedTasks);
         } catch (error) {
             console.error("Błąd parsowania tasks z localStorage:", error);
-            return defaultTasks;
+            return [];
         }
     }
 
-    return defaultTasks;
+    return [];
 };
 function App() {
-    const [tasks, setTasks] = useState(defaultTasks);
+    const [tasks, setTasks] = useState(getInitialTasks);
+
+    useEffect(() => {
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+    }, [tasks]);
 
     const [hideCompleted, setHideCompleted] = useState(false);
 

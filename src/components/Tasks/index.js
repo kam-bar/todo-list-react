@@ -1,28 +1,91 @@
-import "./Tasks.css";
+import styled, { css } from "styled-components";
+
+const TaskList = styled.ul`
+    list-style: none;
+    margin: 0;
+    padding: 0;
+`;
+
+const TaskItem = styled.li`
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid ${({ theme }) => theme.colors.gallery};
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    ${({ done }) =>
+        done &&
+        css`
+            .taskContent {
+                text-decoration: line-through;
+            }
+        `}
+`;
+
+const TaskContent = styled.span`
+    word-break: break-word;
+`;
+
+const TaskButton = styled.button`
+    width: 30px;
+    height: 30px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    color: ${({ color }) => (color ? color : "white")};
+    font-weight: bold;
+    font-size: 16px;
+
+    ${({ toggle }) =>
+        toggle &&
+        css`
+            background-color: ${({ theme }) => theme.colors.emerald};
+
+            &:hover {
+                background-color: ${({ theme }) => theme.colors.emeraldDark};
+                transform: scale(1.1);
+            }
+            &:active {
+                background-color: ${({ theme }) => theme.colors.emeraldDarker};
+            }
+        `}
+
+    ${({ remove }) =>
+        remove &&
+        css`
+            background-color: ${({ theme }) => theme.colors.crimson};
+
+            &:hover {
+                background-color: ${({ theme }) => theme.colors.crimsonDark};
+                transform: scale(1.1);
+            }
+            &:active {
+                background-color: ${({ theme }) => theme.colors.crimsonDarker};
+            }
+        `}
+`;
 
 const Tasks = ({ tasks, removeTask, toggleTaskDone }) => (
-    <ul className="tasks">
+    <TaskList>
         {tasks.map((task) => (
-            <li
-                key={task.id}
-                className={`tasks__item${
-                    task.done ? " tasks__item--done" : ""
-                }`}
-            >
-                <button className="tasks__button tasks__button--toggleDone"
-                onClick={() => toggleTaskDone(task.id)}
-                >
+            <TaskItem key={task.id} done={task.done}>
+                <TaskButton toggle onClick={() => toggleTaskDone(task.id)}>
                     {task.done ? "✓" : ""}
-                </button>
-                <span className="tasks__content">{task.content}</span>
-                <button className="tasks__button tasks__button--remove"
-                onClick={() => removeTask(task.id)}
-                >
+                </TaskButton>
+                <TaskContent className="taskContent">
+                    {task.content}
+                </TaskContent>
+                <TaskButton remove onClick={() => removeTask(task.id)}>
                     🗑
-                </button>
-            </li>
+                </TaskButton>
+            </TaskItem>
         ))}
-    </ul>
+    </TaskList>
 );
 
 export default Tasks;

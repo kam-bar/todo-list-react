@@ -1,24 +1,28 @@
 # React To-Do List
 
-A simple To-Do List application built with React. This project was created to practice React fundamentals, including component structure, prop drilling, and rendering lists.
+A simple To-Do List application built with React. This project was created to practice React fundamentals, including component structure, state management, custom hooks, and styled-components.
 
 ## Demo
 You can view the live application here:
 [https://kam-bar.github.io/todo-list-react](https://kam-bar.github.io/todo-list-react)
 
-## Technologies and Tools
-The project utilizes the following technologies:
-- **React** – UI library
-- **Create React App** – development environment configuration
-- **JavaScript (ES6+)** – logic (immutability, arrow functions)
-- **CSS3 + BEM** – styling and naming convention
-- **GitHub Pages** – deployment
+## Technologies
+- React 18
+- Create React App
+- Styled Components
+- Custom Hooks (useTasks)
+- useRef Hook
+- localStorage
+- JavaScript ES6+
+- GitHub Pages
 
 ## Features
-- Interface split into reusable, functional components (Header, Section, Form, Tasks)
-- List rendering using the `.map()` method
-- Component styling following the BEM methodology
-- Responsive Web Design (RWD)
+- Add, remove, and toggle tasks
+- Mark all tasks as done
+- Hide/show completed tasks
+- Data persistence with localStorage
+- Auto-focus on input after adding task
+- Responsive design
 
 
 ![homepage](https://i.postimg.cc/d0zW82sH/readme.png)

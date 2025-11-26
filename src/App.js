@@ -1,66 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Container from "./components/Container";
 import Header from "./components/Header";
 import Section from "./components/Section";
 import Form from "./components/Form";
 import Tasks from "./components/Tasks";
 import Buttons from "./components/Buttons";
+import { useTasks } from "./useTasks";
 
-
-const getInitialTasks = () => {
-    const savedTasks = localStorage.getItem("tasks");
-
-    if (savedTasks) {
-        try {
-            return JSON.parse(savedTasks);
-        } catch (error) {
-            console.error("Błąd parsowania tasks z localStorage:", error);
-            return [];
-        }
-    }
-
-    return [];
-};
 function App() {
-    const [tasks, setTasks] = useState(getInitialTasks);
-
-    useEffect(() => {
-        localStorage.setItem("tasks", JSON.stringify(tasks));
-    }, [tasks]);
+    const { tasks, addNewTask, removeTask, toggleTaskDone, setAllDone } = useTasks();
 
     const [hideCompleted, setHideCompleted] = useState(false);
 
     const toggleHideCompleted = () => {
         setHideCompleted((prev) => !prev);
-    };
-    const removeTask = (id) => {
-        setTasks((tasks) => tasks.filter((task) => task.id !== id));
-    };
-
-    const toggleTaskDone = (id) => {
-        setTasks((tasks) =>
-            tasks.map((task) => {
-                if (task.id === id) {
-                    return { ...task, done: !task.done };
-                }
-                return task;
-            })
-        );
-    };
-
-    const setAllDone = () => {
-        setTasks((tasks) => tasks.map((task) => ({ ...task, done: true })));
-    };
-
-    const addNewTask = (content) => {
-        setTasks((tasks) => [
-            ...tasks,
-            {
-                content,
-                done: false,
-                id: tasks.length === 0 ? 1 : tasks[tasks.length - 1].id + 1,
-            },
-        ]);
     };
 
     const tasksToRender = hideCompleted

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Container from "./components/Container";
 import Header from "./components/Header";
 import Section from "./components/Section";
@@ -8,17 +7,16 @@ import Buttons from "./components/Buttons";
 import { useTasks } from "./useTasks";
 
 function App() {
-    const { tasks, addNewTask, removeTask, toggleTaskDone, setAllDone } = useTasks();
-
-    const [hideCompleted, setHideCompleted] = useState(false);
-
-    const toggleHideCompleted = () => {
-        setHideCompleted((prev) => !prev);
-    };
-
-    const tasksToRender = hideCompleted
-        ? tasks.filter((task) => !task.done)
-        : tasks;
+    const {
+        tasks,
+        tasksToRender,
+        addNewTask,
+        removeTask,
+        toggleTaskDone,
+        setAllDone,
+        hideCompleted,
+        toggleHideCompleted,
+    } = useTasks();
 
     return (
         <Container>

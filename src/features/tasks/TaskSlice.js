@@ -18,6 +18,7 @@ const getInitialTasks = () => {
 const initialState = {
     tasks: getInitialTasks(),
     hideDone: false,
+    loading: false,
 };
 
 const taskSlice = createSlice({
@@ -44,6 +45,16 @@ const taskSlice = createSlice({
         toggleHideDone: (state) => {
             state.hideDone = !state.hideDone;
         },
+        fetchExampleTasks: (state) => {
+            state.loading = true;
+        },
+        fetchExampleTasksSuccess: (state, { payload: tasks }) => {
+            state.loading = false;
+            state.tasks = tasks;
+        },
+        fetchExampleTasksError: (state) => {
+            state.loading = false;
+        },
     },
 });
 
@@ -53,11 +64,15 @@ export const {
     removeTask,
     setAllDone,
     toggleHideDone,
+    fetchExampleTasks,
+    fetchExampleTasksSuccess,
+    fetchExampleTasksError,
 } = taskSlice.actions;
 
 export const selectTasksState = (state) => state.tasks;
 export const selectTasksList = (state) => selectTasksState(state).tasks;
 export const selectHideDone = (state) => selectTasksState(state).hideDone;
+export const selectLoading = (state) => selectTasksState(state).loading;
 export const selectTasksEmpty = (state) => selectTasksList(state).length === 0;
 export const selectIsEveryTaskDone = (state) =>
     selectTasksList(state).length > 0 &&

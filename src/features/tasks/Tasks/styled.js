@@ -1,4 +1,11 @@
 import styled, { css } from "styled-components";
+import { Link } from "react-router-dom";
+
+export const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: inherit;
+    flex-grow: 1;
+`;
 
 export const TaskList = styled.ul`
     list-style: none;

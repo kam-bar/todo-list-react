@@ -1,34 +1,43 @@
 import { useSelector, useDispatch } from "react-redux";
-import { TaskList, TaskItem, TaskContent, TaskButton } from "./styled";
 import {
-    selectTasksList,
-    selectHideDone,
-    toggleTaskDone,
-    removeTask,
-} from "../TaskSlice";
+    TaskList,
+    TaskItem,
+    TaskContent,
+    TaskButton,
+    StyledLink,
+} from "./styled";
+import { selectTasksList, toggleTaskDone, removeTask } from "../TaskSlice";
+import { ROUTES } from "../../../routes";
 
 const Tasks = () => {
     const tasks = useSelector(selectTasksList);
-    const hideDone = useSelector(selectHideDone);
+    console.log(tasks);
     const dispatch = useDispatch();
-
-    const tasksToRender = hideDone ? tasks.filter((task) => !task.done) : tasks;
 
     return (
         <TaskList>
-            {tasksToRender.map((task) => (
-                <TaskItem key={task.id} done={task.done}>
+            {tasks.map((task) => (
+                <TaskItem
+                    key={task.id}
+                    done={task.done}
+                    hidden={task.hidden}
+                    style={{ display: task.hidden ? "none" : "grid" }}
+                >
                     <TaskButton
-                        toggle
+                        toggle="true"
                         onClick={() => dispatch(toggleTaskDone(task.id))}
                     >
-                        {task.done ? "✓" : ""}
+                        {task.done ? "✔" : ""}
                     </TaskButton>
-                    <TaskContent className="taskContent">
-                        {task.content}
-                    </TaskContent>
+
+                    <StyledLink to={ROUTES.task(task.id)}>
+                        <TaskContent className="taskContent">
+                            {task.content}
+                        </TaskContent>
+                    </StyledLink>
+
                     <TaskButton
-                        remove
+                        remove="true"
                         onClick={() => dispatch(removeTask(task.id))}
                     >
                         🗑

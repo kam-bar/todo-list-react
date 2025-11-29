@@ -44,6 +44,11 @@ const taskSlice = createSlice({
         },
         toggleHideDone: (state) => {
             state.hideDone = !state.hideDone;
+
+            state.tasks = state.tasks.map((task) => ({
+                ...task,
+                hidden: state.hideDone && task.done,
+            }));
         },
         fetchExampleTasks: (state) => {
             state.loading = true;

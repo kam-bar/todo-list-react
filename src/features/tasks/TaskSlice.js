@@ -1,7 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const getInitialTasks = () => {
+    const savedTasks = localStorage.getItem("tasks");
+
+    if (savedTasks) {
+        try {
+            return JSON.parse(savedTasks);
+        } catch (error) {
+            console.error("Błąd parsowania tasks z localStorage:", error);
+            return [];
+        }
+    }
+
+    return [];
+};
+
 const initialState = {
-    tasks: [],
+    tasks: getInitialTasks(),
     hideDone: false,
 };
 
@@ -40,12 +55,12 @@ export const {
     toggleHideDone,
 } = taskSlice.actions;
 
-export const selectTasks = (state) => state.tasks;
-export const selectTasksList = (state) => state.tasks.tasks;
-export const selectHideDone = (state) => state.tasks.hideDone;
-export const selectTasksEmpty = (state) => state.tasks.tasks.length === 0;
+export const selectTasksState = (state) => state.tasks;
+export const selectTasksList = (state) => selectTasksState(state).tasks;
+export const selectHideDone = (state) => selectTasksState(state).hideDone;
+export const selectTasksEmpty = (state) => selectTasksList(state).length === 0;
 export const selectIsEveryTaskDone = (state) =>
-    state.tasks.tasks.length > 0 &&
-    state.tasks.tasks.every((task) => task.done);
+    selectTasksList(state).length > 0 &&
+    selectTasksList(state).every((task) => task.done);
 
 export default taskSlice.reducer;

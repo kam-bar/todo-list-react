@@ -1,6 +1,6 @@
 # React To-Do List
 
-A simple To-Do List application built with React. This project was created to practice React fundamentals, including component structure, state management, custom hooks, and styled-components.
+A simple To-Do List application built with React and Redux Toolkit. The project was created as part of a JavaScript course to practice working with components, global state management, localStorage and styled-components.
 
 ## Demo
 You can view the live application here:
@@ -8,6 +8,7 @@ You can view the live application here:
 
 ## Technologies
 - React 18
+- Redux
 - Create React App
 - Styled Components
 - Custom Hooks (useTasks)
@@ -24,7 +25,15 @@ You can view the live application here:
 - Auto-focus on input after adding task
 - Responsive design
 
+## Project structure
 
+- `src/common` – shared UI components (Container, Header, Section)
+- `src/features/tasks` – tasks feature:
+  - `TaskSlice.js` – Redux logic (reducers, actions, selectors)
+  - `Form` – adding new tasks
+  - `Tasks` – rendering the tasks list
+  - `Buttons` – additional actions for the list
+  
 ![homepage](https://i.postimg.cc/d0zW82sH/readme.png)
 
 ### `npm start`

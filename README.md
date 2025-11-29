@@ -1,18 +1,16 @@
 # React To-Do List
 
-A simple To-Do List application built with React and Redux Toolkit. The project was created as part of a JavaScript course to practice working with components, global state management, localStorage and styled-components.
-
+A simple To-Do List application built with React, Redux Toolkit, and Redux Saga. This project helps me learn React, global state management, routing, and asynchronous operations.
 ## Demo
 You can view the live application here:
 [https://kam-bar.github.io/todo-list-react](https://kam-bar.github.io/todo-list-react)
 
 ## Technologies
 - React 18
-- Redux
-- Create React App
+- Redux Toolkit
+- Redux Saga
+- React Router
 - Styled Components
-- Custom Hooks (useTasks)
-- useRef Hook
 - localStorage
 - JavaScript ES6+
 - GitHub Pages
@@ -21,9 +19,11 @@ You can view the live application here:
 - Add, remove, and toggle tasks
 - Mark all tasks as done
 - Hide/show completed tasks
-- Data persistence with localStorage
-- Auto-focus on input after adding task
-- Responsive design
+- Fetch example tasks from JSON
+- Search tasks
+- View task details on separate page
+- About author page
+- Data saved automatically to localStorage
 
 ## Project structure
 
@@ -34,7 +34,7 @@ You can view the live application here:
   - `Tasks` – rendering the tasks list
   - `Buttons` – additional actions for the list
   
-![homepage](https://i.postimg.cc/d0zW82sH/readme.png)
+![homepage](https://postimg.cc/tZmRLx7j)
 
 ### `npm start`
 

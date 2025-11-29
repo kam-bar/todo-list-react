@@ -8,18 +8,26 @@ import {
 } from "./styled";
 import { selectTasksList, toggleTaskDone, removeTask } from "../TaskSlice";
 import { ROUTES } from "../../../routes";
+import { useQueryParameter } from "../useQueryParameter";
+
+const SEARCH_QUERY_PARAM_NAME = "search";
 
 const Tasks = () => {
     const tasks = useSelector(selectTasksList);
-    console.log(tasks);
     const dispatch = useDispatch();
+    const searchQuery = useQueryParameter(SEARCH_QUERY_PARAM_NAME) || "";
+
+    const normalizedQuery = searchQuery.trim().toLowerCase();
+
+    const filteredTasks = tasks.filter((task) =>
+        task.content.toLowerCase().includes(normalizedQuery)
+    );
 
     return (
         <TaskList>
-            {tasks.map((task) => (
+            {filteredTasks.map((task) => (
                 <TaskItem
                     key={task.id}
-                    done={task.done}
                     hidden={task.hidden}
                     style={{ display: task.hidden ? "none" : "grid" }}
                 >

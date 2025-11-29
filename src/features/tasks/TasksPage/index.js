@@ -3,6 +3,7 @@ import Form from "../Form";
 import Tasks from "../Tasks";
 import Buttons from "../Buttons";
 import FetchExampleTasksButton from "../FetchExampleTasksButton";
+import Search from "../Search";
 
 const TasksPage = () => (
     <>
@@ -11,6 +12,7 @@ const TasksPage = () => (
             body={<Form />}
             extraHeaderContent={<FetchExampleTasksButton />}
         />
+        <Section title="Wyszukiwarka" body={<Search />} />
         <Section
             title="Lista zadań"
             body={<Tasks />}

@@ -1,0 +1,17 @@
+[
+    {
+        "id": "1",
+        "content": "Wykonaj lekcję",
+        "done": false
+    },
+    {
+        "id": "2",
+        "content": "Wyślij do oceny na Slack",
+        "done": false
+    },
+    {
+        "id": "3",
+        "content": "Wyślij maila w sprawie dołączenia do grupowego projektu",
+        "done": false
+    }
+]
